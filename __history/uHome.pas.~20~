@@ -1,0 +1,124 @@
+// ---------------------------------------------------------------------------
+
+// This software is Copyright (c) 2018 Embarcadero Technologies, Inc.
+// You may only use this software if you are an authorized licensee
+// of an Embarcadero developer tools product.
+// This software is considered a Redistributable as defined under
+// the software license agreement that comes with the Embarcadero Products
+// and is subject to that software license agreement.
+
+// ---------------------------------------------------------------------------
+
+unit uHome;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, uHomeFrame,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, REST.Types, REST.Client,
+  Data.Bind.Components, Data.Bind.ObjectScope, System.Notification;
+
+type
+  TFrmHome = class(TForm)
+    FrmHome: THomeFrame1;
+    EmeraldCrystalStyleBook: TStyleBook;
+    RESTRequest1: TRESTRequest;
+    RESTClient1: TRESTClient;
+    procedure FrmHomeImage1Click(Sender: TObject);
+    procedure FrmHomeButton1Click(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmHome: TFrmHome;
+
+implementation
+
+{$R *.fmx}
+
+uses uLogin, uLoginFrame, SICovid.Dados;
+
+
+// Changes to the layout should be made inside of the TFrame itself. Once changes are made
+// to the TFrame you can delete it from the TForm and re-add it. Set it's Align property to
+// Client. Optionally, it's ClipChildren property can be set to True if there are any overlapping
+// background images.
+
+
+
+procedure TFrmHome.FrmHomeButton1Click(Sender: TObject);
+var
+  body: TStringStream;
+
+  I, valida, ncampos: Integer;
+
+  sintomas, email: String;
+begin
+
+  valida := 0;
+  sintomas := '';
+
+
+  for I := 0 to FrmHome.lstSintomas.Items.Count - 1 do
+    begin
+      if (FrmHome.lstSintomas.ItemByIndex(I).IsChecked = true) then
+      begin
+        valida := 1;
+        sintomas := sintomas + FrmHome.lstSintomas.ListItems[I].Text + ';';
+      end;
+    end;
+
+  if (FrmHome.lstSemSintomas.ItemByIndex(0).IsChecked = true) then
+  begin
+    valida := 1;
+    sintomas := FrmHome.lstSemSintomas.ListItems[0].Text + ';';
+  end
+
+  if valida = 0 then
+  begin
+    ShowMessage('Marque algum campo');
+  end;
+
+  if valida = 1 then
+  begin
+
+    email := FrmLogin.LoginFrame11.EmailEdit.Text;
+
+
+
+    // codigo de envio, coleta os sintomas ...
+    RESTClient1.ContentType := 'application/json';
+    RESTClient1.AcceptEncoding := 'UTF-8';
+    body := TStringStream.Create
+    ('{"query":"mutation InsereMutation {\n\t\t\t  insert_usuario_one(object: {email: \"roberson.alves@unoesc.edu.br\", sintomas: \"' + sintomas + '\"}) {\n\t\t\t\tcodigo data email sintomas\n\n\t\t\t  }\n\t\t\t}"}',
+    TEncoding.UTF8);
+    RESTRequest1.Params.AddItem('x-hasura-admin-secret',
+    'wIbJJIP7RJoi1glgugi7sJRqwfZoCZE37wl71Ro8QxSqOdTcm0t7uG70pfCIwYkh',
+    pkHTTPHEADER, [poDoNotEncode]);
+    RESTRequest1.Params.AddItem('body', body, pkREQUESTBODY, [],
+    ctAPPLICATION_JSON);
+    RESTRequest1.Execute;
+    showmessage(RESTRequest1.Response.JSONText);
+
+
+    end;
+  end;
+
+
+
+
+end;
+
+procedure TFrmHome.FrmHomeImage1Click(Sender: TObject);
+begin
+  FrmHome.Image1Click(Sender);
+
+end;
+
+end.

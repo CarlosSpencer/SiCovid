@@ -1,0 +1,117 @@
+// ---------------------------------------------------------------------------
+
+// This software is Copyright (c) 2018 Embarcadero Technologies, Inc.
+// You may only use this software if you are an authorized licensee
+// of an Embarcadero developer tools product.
+// This software is considered a Redistributable as defined under
+// the software license agreement that comes with the Embarcadero Products
+// and is subject to that software license agreement.
+
+// ---------------------------------------------------------------------------
+
+unit uLogin;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Layouts, uLoginFrame, FMX.DialogService, FireDAC.Stan.Param, System.Notification,
+  DateUtils;
+
+type
+  TFrmLogin = class(TForm)
+    EmeraldCrystalStyleBook: TStyleBook;
+    LoginFrame11: TLoginFrame1;
+    NotificationCenter1: TNotificationCenter;
+    procedure LoginFrame11AuthenticateRectBTNClick(Sender: TObject);
+    procedure LoginFrame11CreateAccountTextClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmLogin: TFrmLogin;
+
+implementation
+
+{$R *.fmx}
+
+uses uRegistro, uHome, SICovid.Dados;
+
+// Changes to the layout should be made inside of the TFrame itself. Once changes are made
+// to the TFrame you can delete it from the TForm and re-add it. Set its Align property to
+// Client. Optionally, it's ClipChildren property can be set to True if there are any overlapping
+// background images.
+
+
+procedure Notificacao(nome, titulo, texto : string);
+var
+  MinhaNotificacao : TNotification;
+begin
+  MinhaNotificacao := FrmLogin.NotificationCenter1.CreateNotification;
+  MinhaNotificacao.Name := nome;
+  MinhaNotificacao.Title := titulo;
+  MinhaNotificacao.AlertBody := texto;
+
+  FrmLogin.NotificationCenter1.PresentNotification(MinhaNotificacao);
+end;
+
+procedure NotificacaoAgendada(nome, titulo, texto : string; segundos : integer);
+var
+  MinhaNotificacao : TNotification;
+begin
+  MinhaNotificacao := FrmLogin.NotificationCenter1.CreateNotification;
+  MinhaNotificacao.Name := nome;
+  MinhaNotificacao.Title := titulo;
+  MinhaNotificacao.AlertBody := texto;
+  MinhaNotificacao.FireDate := IncSecond(now, segundos);
+
+  FrmLogin.NotificationCenter1.ScheduleNotification(MinhaNotificacao);
+end;
+
+
+procedure TFrmLogin.FormShow(Sender: TObject);
+begin
+  Notificacao('SiCovid','Envie seus dados','Estamos esperando voce enviar os dados de hoje!!!');
+end;
+
+procedure TFrmLogin.LoginFrame11AuthenticateRectBTNClick(Sender: TObject);
+begin
+  with DtmDados do
+  begin
+    FDLoginQuery.Close;
+    FDLoginQuery.ParamByName('email').AsString := LoginFrame11.EmailEdit.Text;
+    FDLoginQuery.ParamByName('senha').AsString := LoginFrame11.PasswordEdit.Text;
+    FDLoginQuery.Open();
+    if (FDLoginQuery.RecordCount > 0) then
+    begin
+      if Not Assigned(FrmHome) then
+        FrmHome := TFrmHome.Create(nil);
+      FrmHome.show;
+      Application.MainForm := FrmHome;
+      Self.Close;
+    end
+    else
+    begin
+      TDialogService.MessageDialog('Usuário e/ou senha inválidos!', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], TMsgDlgBtn.mbOK, 0, nil);
+      LoginFrame11.EmailEdit.Text := '';
+      LoginFrame11.PasswordEdit.Text := '';
+      LoginFrame11.EmailEdit.SetFocus;
+    end;
+  end;
+
+end;
+
+procedure TFrmLogin.LoginFrame11CreateAccountTextClick(Sender: TObject);
+begin
+  if not Assigned(FrmRegistro) then
+    FrmRegistro := TFrmRegistro.Create(nil);
+  FrmRegistro.show;
+end;
+
+end.
