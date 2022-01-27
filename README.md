@@ -1,4 +1,4 @@
-# SysCovid
+# SiCovid
 
 Aplicativo criado durante cadeira de Desenvolvimento Android da Pós Graduação em Desenvolvimento Delphi na UNOESC
 
