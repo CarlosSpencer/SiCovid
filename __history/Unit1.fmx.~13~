@@ -1,0 +1,29 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 763
+  ClientWidth = 447
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object SpeedButton1: TSpeedButton
+    Position.X = 40.000000000000000000
+    Position.Y = 312.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'SpeedButton1'
+    OnClick = SpeedButton1Click
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 40.000000000000000000
+    Position.Y = 256.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

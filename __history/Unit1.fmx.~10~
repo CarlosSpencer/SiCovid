@@ -1,0 +1,32 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 562
+  ClientWidth = 630
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object Label1: TLabel
+    Align = Client
+    StyledSettings = [Family]
+    Size.Width = 630.000000000000000000
+    Size.Height = 514.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 20.000000000000000000
+    TextSettings.Font.StyleExt = {00040000000200000004000000}
+    TextSettings.FontColor = claBlue
+    TextSettings.HorzAlign = Center
+    Text = 'Ol'#225' Delphi Mobile!'
+    TabOrder = 1
+  end
+  object ToolBar1: TToolBar
+    Size.Width = 630.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    TintColor = claOrange
+  end
+end

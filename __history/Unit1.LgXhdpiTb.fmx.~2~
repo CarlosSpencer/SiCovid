@@ -1,0 +1,13 @@
+inherited Form1_LgXhdpiTb: TForm1_LgXhdpiTb
+  ClientHeight = 829
+  ClientWidth = 480
+  DesignerMasterStyle = 0
+  inherited Label1: TLabel
+    Size.Width = 480.000000000000000000
+    Size.Height = 781.000000000000000000
+    TextSettings.Font.StyleExt = {00040000000200000004000000}
+  end
+  inherited ToolBar1: TToolBar
+    Size.Width = 480.000000000000000000
+  end
+end

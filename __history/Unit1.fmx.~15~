@@ -1,0 +1,56 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 763
+  ClientWidth = 447
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object SpeedButton1: TSpeedButton
+    Position.X = 40.000000000000000000
+    Position.Y = 312.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'SpeedButton1'
+    OnClick = SpeedButton1Click
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 40.000000000000000000
+    Position.Y = 256.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Position.X = 336.000000000000000000
+    Position.Y = 448.000000000000000000
+  end
+  object Line1: TLine
+    LineType = Diagonal
+    Position.X = 160.000000000000000000
+    Position.Y = 520.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Ellipse1: TEllipse
+    Position.X = 192.000000000000000000
+    Position.Y = 608.000000000000000000
+    Size.Width = 113.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Text1: TText
+    Position.X = 200.000000000000000000
+    Position.Y = 208.000000000000000000
+    Text = 'teste'
+  end
+end

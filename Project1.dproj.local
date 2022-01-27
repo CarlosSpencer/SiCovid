@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/05/23 15:22:02.000.033,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/05/23 15:36:16.000.925,=C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/05/23 15:40:32.000.696,C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\Usuario\Google Drive\Pós-Graduação\5 - DESENVOLVIMENTO MOBILE\Aula 1 - Teste Inicial\Unit1.fmx</Transaction>
+    <Transaction>2020/05/23 15:40:32.000.696,C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Usuario\Google Drive\Pós-Graduação\5 - DESENVOLVIMENTO MOBILE\Aula 1 - Teste Inicial\Unit1.pas</Transaction>
+    <Transaction>2020/05/23 15:40:34.000.447,C:\Users\Usuario\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Usuario\Google Drive\Pós-Graduação\5 - DESENVOLVIMENTO MOBILE\Aula 1 - Teste Inicial\Project1.dproj</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile Android="d814f2e" Android64="d814f2e"/>
+	</ActiveMobileDevice>
+</BorlandProject>
